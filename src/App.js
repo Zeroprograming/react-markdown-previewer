@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Editor from "./Editor";
+import Preview from "./Preview";
+import { useState } from "react";
 
-function App() {
+
+const App = () => {
+  const [markdown, setMarkdown] = useState("");
+
+  const handleEditorChange = (value) => {
+    setMarkdown(value);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <body className="bg-[#87b5b5] min-h-[100vh] flex flex-col items-center">
+        <div className="p-4" />
+        <div className="w-[60vw] h-full">
+          <Editor onChange={handleEditorChange} />
+        </div>
+        <div className="mt-2 w-[80vw] h-full">
+          <Preview markdown={markdown} />
+        </div>
+      </body>
     </div>
   );
-}
+};
 
 export default App;
+// w-full h-[30vh]
